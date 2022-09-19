@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestReadStruct(t *testing.T) {
+func TestDeserializeStruct(t *testing.T) {
 	type T struct {
 		A string `json:"a"`
 		B string `json:"b"`
@@ -43,4 +43,35 @@ func TestReadStruct(t *testing.T) {
 		}
 	}
 
+}
+
+func TestSerializeStruct(t *testing.T) {
+	type T struct {
+		A string `json:"a"`
+		B string `json:"b"`
+	}
+
+	type TestCase struct {
+		Input      T
+		Expected   string
+		ShouldFail bool
+	}
+
+	testCases := []TestCase{
+		{
+			Input:      T{A: "foo", B: "bar"},
+			Expected:   "{\"a\":\"foo\",\"b\":\"bar\"}",
+			ShouldFail: false,
+		},
+	}
+
+	for _, testCase := range testCases {
+		result, err := SerializeStruct(testCase.Input)
+		if testCase.ShouldFail {
+			assert.NotNil(t, err)
+		} else {
+			assert.Nil(t, err)
+			assert.Equal(t, testCase.Expected, string(result))
+		}
+	}
 }
