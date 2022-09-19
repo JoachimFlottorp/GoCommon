@@ -10,7 +10,7 @@ import "go.uber.org/zap"
 func Error(e error, message ...string) {
 	if e != nil {
 		if len(message) > 0 {
-			panic(message[0] + ": " + e.Error())
+			zap.S().Warn(append(message, ": ", e.Error()))
 		}
 		panic(e.Error())
 	}	
