@@ -24,9 +24,6 @@ jobs:
       - name: Get Dependencies
         run: go get -v -t -d ./...
 
-      - name: Run tests
-        run: go test -v ./...
-
       - name: Generate Codecov
         run: go test -race -v -count=1 -coverprofile=coverage.out ./...
 
