@@ -27,7 +27,7 @@ jobs:
       - name: Generate Codecov
         run: go test -race -v -count=1 -coverprofile=coverage.out ./...
 
-      - name: Upload codecov
+      - name: Upload Codecov
         uses: codecov/codecov-action@v3.1.0
         with:
           fail_ci_if_error: true
