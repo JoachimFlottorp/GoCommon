@@ -18,13 +18,3 @@ func DeserializeStruct[T interface{}](reader io.Reader) (*T, error) {
 func SerializeStruct[T interface{}](c T) ([]byte, error) {
 	return json.Marshal(c)
 }
-
-func WriteStruct[T interface{}](writer io.Writer, c T) error {
-	serialized, err := SerializeStruct(c)
-	if err != nil {
-		return err
-	}
-
-	_, err = writer.Write(serialized)
-	return err
-}

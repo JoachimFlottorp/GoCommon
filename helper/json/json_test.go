@@ -44,35 +44,3 @@ func TestReadStruct(t *testing.T) {
 	}
 
 }
-
-func TestWriteStruct(t *testing.T) {
-	type T struct {
-		A string `json:"a"`
-		B string `json:"b"`
-	}
-
-	type TestCase struct {
-		Input      T
-		Expected   string
-		ShouldFail bool
-	}
-
-	testCases := []TestCase{
-		{
-			Input:      T{A: "foo", B: "bar"},
-			Expected:   "{\"a\":\"foo\",\"b\":\"bar\"}",
-			ShouldFail: false,
-		},
-	}
-
-	for _, testCase := range testCases {
-		writer := strings.Builder{}
-		err := WriteStruct(&writer, testCase.Input)
-		if testCase.ShouldFail {
-			assert.NotNil(t, err)
-		} else {
-			assert.Nil(t, err)
-			assert.Equal(t, testCase.Expected, writer.String())
-		}
-	}
-}
