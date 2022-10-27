@@ -21,20 +21,20 @@ type WeakWrapper interface {
 }
 
 type weakWrapper struct {
-	name string
+	name     string
 	schedule string
-	id cron.EntryID
-	cmd func()
-	enabled bool
+	id       cron.EntryID
+	cmd      func()
+	enabled  bool
 }
 
 func NewWeakWrapper(name, schedule string, id cron.EntryID, cmd func()) WeakWrapper {
 	w := &weakWrapper{
-		name: name,
+		name:     name,
 		schedule: schedule,
-		id: id,
-		cmd: cmd,
-		enabled: true,
+		id:       id,
+		cmd:      cmd,
+		enabled:  true,
 	}
 
 	return w
