@@ -10,7 +10,7 @@ func DeserializeStruct[T interface{}](reader io.Reader) (*T, error) {
 	var C T
 
 	err := json.NewDecoder(reader).Decode(&C)
-	
+
 	return &C, err
 }
 

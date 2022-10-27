@@ -13,7 +13,7 @@ func Error(e error, message ...string) {
 			zap.S().Warn(append(message, ": ", e.Error()))
 		}
 		panic(e.Error())
-	}	
+	}
 }
 
 // IsTrue: Validates that the statement is true

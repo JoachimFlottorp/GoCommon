@@ -6,7 +6,7 @@ import (
 
 var (
 	DefaultConfig = zap.Config{
-		Level: zap.NewAtomicLevelAt(zap.InfoLevel),
+		Level:    zap.NewAtomicLevelAt(zap.InfoLevel),
 		Encoding: "console",
 	}
 )

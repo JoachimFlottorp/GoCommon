@@ -12,7 +12,7 @@ func TestAssert(t *testing.T) {
 				t.Errorf("The code did not panic")
 			}
 		}()
-		
+
 		err := errors.New("T")
 
 		Error(err, "T")
@@ -24,7 +24,7 @@ func TestAssert(t *testing.T) {
 				t.Errorf("The code did panic")
 			}
 		}()
-		
+
 		var err error
 
 		Error(err, "F")
@@ -36,7 +36,7 @@ func TestAssert(t *testing.T) {
 				t.Errorf("The code did not panic")
 			}
 		}()
-		
+
 		IsTrue(true, "T")
 	})
 
@@ -46,7 +46,7 @@ func TestAssert(t *testing.T) {
 				t.Errorf("The code did panic")
 			}
 		}()
-		
+
 		IsTrue(false, "F")
 	})
 }

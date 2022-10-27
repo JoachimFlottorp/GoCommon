@@ -37,13 +37,13 @@ func NewManager(ctx context.Context, logExec bool) *Manager {
 		<-ctx.Done()
 		c.Stop()
 	}()
-	
+
 	m := &Manager{
 		ctx:   ctx,
 		cron:  c,
 		crons: make(map[string]WeakWrapper),
 	}
-	
+
 	return m
 }
 
@@ -77,7 +77,7 @@ func (m *Manager) Add(opts CronOptions) error {
 			opts.Cmd()
 		}()
 	}
-	
+
 	return nil
 }
 
