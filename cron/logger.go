@@ -12,7 +12,7 @@ type l struct{}
 
 func WithLogger(shouldLog bool) cron.Logger {
 	log.InitLogger(log.DefaultConfig)
-	
+
 	if shouldLog {
 		return l{}
 	}
