@@ -126,7 +126,7 @@ func TestRemove(t *testing.T) {
 		}
 	})
 
-	t.Run("ErrNOtFound", func(t *testing.T) {
+	t.Run("ErrNotFound", func(t *testing.T) {
 		c := NewManager(ctx, false)
 		defer c.Stop()
 	
@@ -179,6 +179,28 @@ func TestEnable(t *testing.T) {
 			t.Fatal("timed out")
 		case <-wait(wg):
 		}
+	})
+
+	t.Run("ErrNotFound", func(t *testing.T) {
+		c := NewManager(ctx, true)
+		defer c.Stop()
+	
+		assert.Equal(t, ErrNotFound, c.Enable("test"))
+	})
+
+	t.Run("ErrAlreadyEnabled", func(t *testing.T) {
+		c := NewManager(ctx, true)
+		defer c.Stop()
+	
+		err := c.Add(CronOptions{
+			Name: "test",
+			Spec: "@every 1s",
+			Cmd:  func() {},
+		})
+	
+		assert.NoError(t, err)
+	
+		assert.Equal(t, ErrAlreadyEnabled, c.Enable("test"))
 	})
 }
 
