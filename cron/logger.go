@@ -3,7 +3,6 @@
 package cron
 
 import (
-	"github.com/JoachimFlottorp/GoCommon/log"
 	"github.com/robfig/cron/v3"
 	"go.uber.org/zap"
 )
@@ -11,8 +10,6 @@ import (
 type l struct{}
 
 func WithLogger(shouldLog bool) cron.Logger {
-	log.InitLogger(log.DefaultConfig)
-
 	if shouldLog {
 		return l{}
 	}
