@@ -73,9 +73,7 @@ func (m *Manager) Add(opts CronOptions) error {
 	m.crons[opts.Name] = wrapper
 
 	if opts.RunNow {
-		go func() {
-			opts.Cmd()
-		}()
+		go opts.Cmd()
 	}
 
 	return nil
